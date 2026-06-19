@@ -23,16 +23,6 @@ Abre dois sockets UDP (um para RTP, um para RTCP), captura pacotes de áudio em 
 
 ---
 
-## Por que Python puro e não Django?
-
-RTP/RTCP trafega sobre **UDP**, não HTTP. Django é um framework para requisições HTTP — seu ciclo request/response não existe nesse contexto. Pacotes chegam a cada **20ms** e qualquer overhead de framework quebraria o timing.
-
-O asyncio do Python é o fit natural: tem suporte nativo a sockets UDP não-bloqueantes e processa os pacotes no mesmo loop de eventos que atualiza o display, sem troca de contexto de thread.
-
-> Se no futuro você quiser um dashboard web com histórico, bastaria plugar um **FastAPI** na frente (você já tem o padrão no `pier-test`) — o core UDP ficaria intacto.
-
----
-
 ## Estrutura do projeto
 
 ```

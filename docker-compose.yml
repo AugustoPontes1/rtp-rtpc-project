@@ -1,0 +1,19 @@
+services:
+  monitor:
+    build: .
+    # WSL2 e Linux suportam host networking diretamente
+    network_mode: host
+    environment:
+      RTP_HOST: "0.0.0.0"
+      RTP_PORT: "5004"
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+
+  # Para usar com o VoIP-Project, adicione a rede externa:
+  #
+  # networks:
+  #   default:
+  #     external: true
+  #     name: voip-project_default
